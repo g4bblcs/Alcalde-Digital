@@ -4,8 +4,9 @@ class ArbolDecisiones:
 
     def insertar(self, texto, ruta, consecuencia=None):
         """
-        ruta: lista de 'izq'/'der' que indica dónde insertar
-        ej: ['izq', 'der'] -> raíz -> izquierda -> derecha
+        ruta es una lista que indica hacia donde va a insertarse, por ejemplo: [] es 
+        simplemente la raiz, no va a ningun hijo y va agregando [izq,der] conforme va 
+        bajando a agregar hijos, ahí es raiz -> izquierda -> derecha :)
         """
         if self.raiz is None:
             self.raiz = NodoDecision(texto, consecuencia)
@@ -13,6 +14,8 @@ class ArbolDecisiones:
 
         actual = self.raiz
         for paso in ruta[:-1]:
+            if actual is None:
+                raise ValueError("La ruta especificada no existe en el árbol.")
             actual = actual.izquierda if paso == 'izq' else actual.derecha
 
         nuevo_nodo = NodoDecision(texto, consecuencia)
@@ -20,6 +23,25 @@ class ArbolDecisiones:
             actual.izquierda = nuevo_nodo
         else:
             actual.derecha = nuevo_nodo
+
+    def recorrido_por_niveles(self):
+        #recorrido bfs :)
+        if not self.raiz:
+            return []
+        
+        resultado = []
+        cola = deque([self.raiz])
+        
+        while cola:
+            nodo_actual = cola.popleft()
+            resultado.append(nodo_actual.texto)
+            
+            if nodo_actual.izquierda:
+                cola.append(nodo_actual.izquierda)
+            if nodo_actual.derecha:
+                cola.append(nodo_actual.derecha)
+                
+        return resultado
 
     def avanzar(self, nodo_actual, eleccion):
         """eleccion: 'izq' o 'der'"""
