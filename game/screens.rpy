@@ -8,7 +8,43 @@ init offset = -1
 ################################################################################
 ## Styles
 ################################################################################
+init python:
+    import random
+    def newTimer():
+        return random.uniform(10.0, 20.0)
 
+default timeLeft = 15.0 # Tiempo inicial para el post
+default postReady = False
+
+screen sistema_civitas():
+    if banco.hay_mas():
+        
+        if not postReady:
+            timer timeLeft action SetVariable("postReady", True) repeat True
+            
+        else:
+            frame:
+                align (0.95, 0.05) # Se ubica en la esquina superior derecha
+                padding (15, 15)
+                background "#1e293bdd" # Color de fondo oscuro semitransparente
+                
+                vbox:
+                    spacing 5
+                    text "Nueva notificación de Civitas" size 16 color "#38bdf8"
+                    textbutton "Abrir aplicación":
+                        
+                        action [
+                            SetVariable("postReady", False),
+                            SetVariable("timeLeft", newTimer()),
+                            Call("nueva_publicacion")
+                        ]
+
+screen sistemaPost():
+    if banco.hay_mas():
+        timer timeLeft action [
+            SetVariable("timeLeft", newTimer()),
+            Call("nueva_publicacion")
+        ] repeat True
 
 transform normalImage(x,y):
     zoom 0.45
