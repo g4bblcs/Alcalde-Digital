@@ -9,6 +9,12 @@ init offset = -1
 ## Styles
 ################################################################################
 
+
+transform normalImage(x,y):
+    zoom 0.45
+    yalign y
+    xalign x    
+
 style default:
     properties gui.text_properties()
     language gui.language
