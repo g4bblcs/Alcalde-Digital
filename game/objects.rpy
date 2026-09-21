@@ -1,6 +1,6 @@
 init python:
     from clases.Publicacion import SesionPublicacion, BancoPublicaciones, armar_publicacion
-    
+
 label nueva_publicacion:
     if not banco.hay_mas():
         return
@@ -40,6 +40,11 @@ default banco = BancoPublicaciones([
         "¿Cómo respondes?",
         {"etiqueta": "Desmentir con datos", "texto": "La gente te cree.","efecto": {"reputacion": 10}},
         {"etiqueta": "Ignorarlo", "texto": "El rumor crece.","efecto": {"reputacion": -10}},
+    ), 
+    armar_publicacion(
+        "@ciudadano", "El candidato a alcalde ha sido acusado de corrupción.", True, "¿Qué haces?",
+        {"etiqueta": "Investigar y publicar evidencia", "texto": "La gente te respalda.","efecto": {"reputacion": 15}},
+        {"etiqueta": "Difundir el rumor sin verificar", "texto": "El rumor se propaga.","efecto": {"reputacion": -15}},
     ),
     
 ])

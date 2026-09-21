@@ -5,14 +5,13 @@
 # The game starts here.
 
 label start:
-    "Ciudad Nova, día de elecciones..."
+    show screen sistema_civitas
+    "Hoy es un día tranquilo en la ciudad."
+    "Demasiado tranquilo, de hecho..."
+    "Voy a seguir caminando hacia la universidad mientras reviso mis cosas."
+    "Parece que no hay nada interesante por hacer hoy."
 
-    call nueva_publicacion
-
-    "Reputación: [stats['reputacion']]"
-
-    call nueva_publicacion
-
-    "Fin del día."
+    while banco.hay_mas():
+        "tal vez debería revisar mi teléfono para ver si hay algo nuevo."
     return
 
