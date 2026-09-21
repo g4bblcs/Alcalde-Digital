@@ -1,5 +1,5 @@
 import random
-from Tree import ArbolDecisiones
+from clases.Tree import ArbolDecisiones
 
 
 class Publicacion:

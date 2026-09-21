@@ -1,6 +1,6 @@
 init python:
-    from publicacion import SesionPublicacion, BancoPublicaciones, armar_publicacion
-
+    from clases.Publicacion import SesionPublicacion, BancoPublicaciones, armar_publicacion
+    
 label nueva_publicacion:
     if not banco.hay_mas():
         return
@@ -18,12 +18,12 @@ label nueva_publicacion:
 
     $ aplicar_consecuencia(sesion.actual.consecuencia)
     return
-
-def aplicar_consecuencia(consecuencia):
-        if not consecuencia:
-            return
-        for clave, valor in consecuencia.items():
-            store.stats[clave] = store.stats.get(clave, 0) + valor
+init python:
+    def aplicar_consecuencia(consecuencia):
+            if not consecuencia:
+                return
+            for clave, valor in consecuencia.items():
+                store.stats[clave] = store.stats.get(clave, 0) + valor
 
 # personajes
 
