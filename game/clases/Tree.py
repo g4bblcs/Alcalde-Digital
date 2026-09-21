@@ -1,15 +1,13 @@
+from collections import deque
+from clases.Node import NodoDecision
+
 class ArbolDecisiones:
     def __init__(self):
         self.raiz = None
 
-    def insertar(self, texto, ruta, consecuencia=None):
-        """
-        ruta es una lista que indica hacia donde va a insertarse, por ejemplo: [] es 
-        simplemente la raiz, no va a ningun hijo y va agregando [izq,der] conforme va 
-        bajando a agregar hijos, ahí es raiz -> izquierda -> derecha :)
-        """
+    def insertar(self, texto, ruta, consecuencia=None, etiqueta=None):
         if self.raiz is None:
-            self.raiz = NodoDecision(texto, consecuencia)
+            self.raiz = NodoDecision(texto, consecuencia, etiqueta)
             return
 
         actual = self.raiz
@@ -18,7 +16,7 @@ class ArbolDecisiones:
                 raise ValueError("La ruta especificada no existe en el árbol.")
             actual = actual.izquierda if paso == 'izq' else actual.derecha
 
-        nuevo_nodo = NodoDecision(texto, consecuencia)
+        nuevo_nodo = NodoDecision(texto, consecuencia, etiqueta)
         if ruta[-1] == 'izq':
             actual.izquierda = nuevo_nodo
         else:
