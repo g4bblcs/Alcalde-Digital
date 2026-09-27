@@ -261,7 +261,9 @@ screen quick_menu():
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
+## Desactivado: el juego usa pantallas propias con su propia navegacion y el
+## menu rapido se solapaba con ellas. El menu de juego sigue accesible con Esc.
+default quick_menu = False
 
 style quick_menu is hbox
 style quick_button is default
