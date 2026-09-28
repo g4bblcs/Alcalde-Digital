@@ -5,6 +5,7 @@ define narrador = Character(None, what_color="#e8eef7")
 define civitas = Character("Civitas", color="#38bdf8")
 
 default partida = None
+default mapa_nova = MapaCiudad()
 
 
 label start:
@@ -26,6 +27,9 @@ label start:
     $ partida = Partida("Tu", _return)
 
     scene bg ciudad with dissolve
+
+    $ viaje_ciudad = Viaje(mapa_nova, "centro")
+    call screen mapa_ciudad(viaje_ciudad)
 
     narrador "Juegas como {b}[partida.jugador.nombre_rol]{/b}. [partida.jugador.perfil['habilidad']]"
 

@@ -14,6 +14,7 @@ init python:
     from clases.jugador import ROLES, CIUDADANO, PERIODISTA, INFLUENCER, CANDIDATO
     from clases.ciudad import NOMBRES as NOMBRES_IND
     from clases.partida import Partida, TURNOS
+    from clases.mapa import MapaCiudad, Viaje
 
     # Paleta unica del juego; se usa desde las pantallas.
     COL_FONDO   = "#0b1424"
