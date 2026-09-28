@@ -357,26 +357,64 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
-    add gui.main_menu_background
+    add "images/menu/pantalla_inicio.png" xysize (1920, 1080)
 
-    ## This empty frame darkens the main menu.
-    frame:
-        style "main_menu_frame"
+    use main_menu_hotspots
 
-    ## The use statement includes another screen inside this one. The actual
-    ## contents of the main menu are in the navigation screen.
-    use navigation
 
-    if gui.show_name:
+screen main_menu_hotspots():
+    fixed:
+        xysize (1920, 1080)
 
-        vbox:
-            style "main_menu_vbox"
+        button:
+            xpos 55
+            ypos 484
+            xysize (355, 72)
+            action Start()
+            background None
+            hover_background Solid("#c8bfff22")
+            focus_mask True
+            add Solid("#00000001")
 
-            text "[config.name!t]":
-                style "main_menu_title"
+        button:
+            xpos 58
+            ypos 568
+            xysize (350, 72)
+            action ShowMenu("load")
+            background None
+            hover_background Solid("#c8bfff22")
+            focus_mask True
+            add Solid("#00000001")
 
-            text "[config.version]":
-                style "main_menu_version"
+        button:
+            xpos 58
+            ypos 660
+            xysize (350, 72)
+            action ShowMenu("preferences")
+            background None
+            hover_background Solid("#c8bfff22")
+            focus_mask True
+            add Solid("#00000001")
+
+        button:
+            xpos 58
+            ypos 750
+            xysize (350, 72)
+            action ShowMenu("about")
+            background None
+            hover_background Solid("#c8bfff22")
+            focus_mask True
+            add Solid("#00000001")
+
+        button:
+            xpos 58
+            ypos 840
+            xysize (350, 72)
+            action Quit(confirm=True)
+            background None
+            hover_background Solid("#c8bfff22")
+            focus_mask True
+            add Solid("#00000001")
 
 
 style main_menu_frame is empty
