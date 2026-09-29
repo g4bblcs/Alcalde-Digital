@@ -13,8 +13,7 @@ init python:
                 else:
                     store.jugador.perder_puntos(-valor)
             elif clave == 'reputacion':
-                amp = store.jugador.get_amplificador()
-                store.jugador.reputacion = max(0, min(100, store.jugador.reputacion + int(valor * amp)))
+                store.jugador.reputacion = max(0, min(100, store.jugador.reputacion + valor))
             elif hasattr(store.ciudad, clave):
                 nuevo = max(0, min(100, getattr(store.ciudad, clave) + valor))
                 setattr(store.ciudad, clave, nuevo)
@@ -35,6 +34,7 @@ label nueva_publicacion:
         "[sesion.actual.texto]"
 
     $ aplicar_consecuencia(sesion.actual.consecuencia)
+    $ procesando = False
 
     $ razon_derrota = ciudad.derrota_inmediata() or ""
     if razon_derrota:
